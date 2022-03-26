@@ -1,0 +1,12 @@
+/opt/application/public/app
+/opt/application/public/appsettings.json
+/opt/application/public/app.dll
+/opt/application/public/app.deps.json
+/opt/application/public/app.runtimeconfig.json
+/opt/application/public/app.pdb
+/opt/application/public/Microsoft.OpenApi.dll
+/opt/application/public/Prometheus.NetCore.dll
+/opt/application/public/Prometheus.NetStandard.dll
+/opt/application/public/Swashbuckle.AspNetCore.Swagger.dll
+/opt/application/public/Swashbuckle.AspNetCore.SwaggerGen.dll
+/opt/application/public/Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -1,0 +1,45 @@
+version: "3"
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+services:
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/config.ini:/etc/grafana/config.ini
+      - ./grafana/dashboards:/etc/grafana/dashboards
+    depends_on:
+      - prometheus
+
+  app:
+    image: mcr.microsoft.com/dotnet/sdk
+    volumes:
+      - ./:/opt/application
+    working_dir: /opt/application
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+      - "8200:8200"
+    environment:
+      - ASPNETCORE_URLS=http://+:${APP_PORT}
+    entrypoint: >
+      sh -c "
+        dotnet publish ./app -o ./${APP_DIR} &&
+        dotnet ./${APP_DIR}/app.dll
+      "

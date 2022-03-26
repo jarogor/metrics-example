@@ -1,0 +1,9 @@
+datasources:
+  - name: "prometheus-monitoring"
+    type: "prometheus"
+    version: 1
+    org_id: 1
+    access: "proxy"
+    url: "http://prometheus:9090"
+    is_default: true
+    editable: true

@@ -1,0 +1,17 @@
+apiVersion: 1
+
+providers:
+  - name: "Prometheus"
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards
+      foldersFromFilesStructure: true
+  - name: "default"
+    org_id: 1
+    folder: ""
+    type: "file"
+    options:
+      folder: "/var/lib/grafana/dashboards"
