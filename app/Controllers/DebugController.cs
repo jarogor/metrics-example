@@ -6,13 +6,6 @@ namespace app.Controllers;
 [Route("debug")]
 public class DebugController : ControllerBase
 {
-    private readonly ILogger<DebugController> _logger;
-
-    public DebugController(ILogger<DebugController> logger)
-    {
-        _logger = logger;
-    }
-
     [HttpGet(Name = "GetDebug")]
     public Dictionary<string, int> Get()
     {
@@ -28,9 +21,6 @@ public class DebugController : ControllerBase
         { App.PrometheusMetrics.StatisticCounter[randomLabel]++; }
         else
         { App.PrometheusMetrics.StatisticCounter.Add(randomLabel, 1); }
-
-        // // writing to stdout
-        // _logger.LogInformation(string.Join(Environment.NewLine, App.PrometheusMetrics.StatisticCounter));
 
         // response to client
         return App.PrometheusMetrics.StatisticCounter;
