@@ -40,6 +40,6 @@ services:
       - ASPNETCORE_URLS=http://+:${APP_PORT}
     entrypoint: >
       sh -c "
-        dotnet publish ./app -o ./${APP_DIR} &&
-        dotnet ./${APP_DIR}/app.dll
+        dotnet publish ./app -o ./public &&
+        dotnet ./public/app.dll
       "
